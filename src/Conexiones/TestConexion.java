@@ -11,7 +11,7 @@ public class TestConexion {
 
         String url = "jdbc:mysql://localhost:3306/";
         String user = "root";
-        String password = "";
+        String password = "n0m3l0";
 
         try {
 

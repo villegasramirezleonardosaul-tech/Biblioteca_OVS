@@ -15,7 +15,7 @@ public class Conexion {
 
     // Usuario y contraseña
     private static final String USER = "root";
-    private static final String PASSWORD = "";
+    private static final String PASSWORD = "n0m3l0";
 
     // Método para conectar
     public static Connection conectar() {
