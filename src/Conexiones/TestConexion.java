@@ -1,3 +1,5 @@
+//Clase pa calar que sirva la conexion
+
 package Conexiones;
 
 import java.sql.Connection;
@@ -8,8 +10,10 @@ import java.sql.Statement;
 public class TestConexion {
 
     public static void main(String[] args) {
-
+        //Igual no tocar
         String url = "jdbc:mysql://localhost:3306/";
+        
+        //Aca meten su usuario y contraseña de mysql
         String user = "root";
         String password = "n0m3l0";
 
