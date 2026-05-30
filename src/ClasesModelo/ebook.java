@@ -4,10 +4,6 @@ package ClasesModelo;
  *
  * @author XxChris777xX
  */
-/**
- * Modelo que representa un Ebook en la base de datos.
- * Alineado con la tabla Ebook de LitConnect.
- */
 public class Ebook {
     private int idLibro;
     private int idTag;
@@ -18,10 +14,8 @@ public class Ebook {
     private String urlLibro;
     private String urlImagen;
 
-    // Constructor vacío
     public Ebook() {}
 
-    // Constructor completo
     public Ebook(int idLibro, int idTag, String titulo, String autor,
                  int nPaginas, String editorial, String urlLibro, String urlImagen) {
         this.idLibro   = idLibro;
@@ -35,29 +29,64 @@ public class Ebook {
     }
 
     // Getters y Setters
-    public int getIdLibro()              { return idLibro; }
-    public void setIdLibro(int idLibro)  { this.idLibro = idLibro; }
+    public int getIdLibro(){ 
+        return idLibro; 
+        
+    }
+    public void setIdLibro(int idLibro){ 
+        this.idLibro = idLibro;
+    }
 
-    public int getIdTag()                { return idTag; }
-    public void setIdTag(int idTag)      { this.idTag = idTag; }
+    public int getIdTag(){
+        return idTag; 
+    
+    }
+    public void setIdTag(int idTag){ 
+        this.idTag = idTag; 
+    }
 
-    public String getTitulo()                    { return titulo; }
-    public void setTitulo(String titulo)         { this.titulo = titulo; }
+    public String getTitulo(){ 
+        return titulo; 
+    
+    }
+    public void setTitulo(String titulo){ 
+        this.titulo = titulo;
+    }
 
-    public String getAutor()                     { return autor; }
-    public void setAutor(String autor)           { this.autor = autor; }
+    public String getAutor(){ 
+        return autor; 
+    }
+    public void setAutor(String autor){ 
+        this.autor = autor; 
+    }
 
-    public int getNPaginas()                     { return nPaginas; }
-    public void setNPaginas(int nPaginas)        { this.nPaginas = nPaginas; }
+    public int getNPaginas(){ 
+        return nPaginas;
+    }
+    public void setNPaginas(int nPaginas){ 
+        this.nPaginas = nPaginas;
+    }
 
-    public String getEditorial()                 { return editorial; }
-    public void setEditorial(String editorial)   { this.editorial = editorial; }
+    public String getEditorial(){ 
+        return editorial;
+    }
+    public void setEditorial(String editorial){
+        this.editorial = editorial; 
+    }
 
-    public String getUrlLibro()                  { return urlLibro; }
-    public void setUrlLibro(String urlLibro)     { this.urlLibro = urlLibro; }
+    public String getUrlLibro(){ 
+        return urlLibro; 
+    }
+    public void setUrlLibro(String urlLibro){ 
+        this.urlLibro = urlLibro; 
+    }
 
-    public String getUrlImagen()                 { return urlImagen; }
-    public void setUrlImagen(String urlImagen)   { this.urlImagen = urlImagen; }
+    public String getUrlImagen(){
+        return urlImagen; 
+    }
+    public void setUrlImagen(String urlImagen){ 
+        this.urlImagen = urlImagen;
+    }
 
     @Override
     public String toString() {
