@@ -1,8 +1,6 @@
 package Main;
 
-import Conexiones.Conexion;
 import Ventana.VentanaPrincipal;
-import java.sql.Connection;
 
 public class Main {
 
