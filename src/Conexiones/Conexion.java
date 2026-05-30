@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class Conexion {
 
     // Nombre de la base de datos
-    private static final String BD = "biblioteca";
+    private static final String BD = "LitConnect";
 
     // No tocar a menos que tengan otro puerto
     private static final String URL =

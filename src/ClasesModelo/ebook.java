@@ -4,67 +4,63 @@ package ClasesModelo;
  *
  * @author XxChris777xX
  */
-public class ebook {
-    
-        private int id;
+/**
+ * Modelo que representa un Ebook en la base de datos.
+ * Alineado con la tabla Ebook de LitConnect.
+ */
+public class Ebook {
+    private int idLibro;
+    private int idTag;
     private String titulo;
     private String autor;
+    private int nPaginas;
     private String editorial;
-    private int anio;
+    private String urlLibro;
+    private String urlImagen;
 
-    
-    public ebook() {
-    }
+    // Constructor vacío
+    public Ebook() {}
 
-    // el metodo constructor
-    public ebook(int id, String titulo, String autor, String editorial, int anio) {
-        this.id = id;
-        this.titulo = titulo;
-        this.autor = autor;
+    // Constructor completo
+    public Ebook(int idLibro, int idTag, String titulo, String autor,
+                 int nPaginas, String editorial, String urlLibro, String urlImagen) {
+        this.idLibro   = idLibro;
+        this.idTag     = idTag;
+        this.titulo    = titulo;
+        this.autor     = autor;
+        this.nPaginas  = nPaginas;
         this.editorial = editorial;
-        this.anio = anio;
+        this.urlLibro  = urlLibro;
+        this.urlImagen = urlImagen;
     }
 
-    // getters y setters
+    // Getters y Setters
+    public int getIdLibro()              { return idLibro; }
+    public void setIdLibro(int idLibro)  { this.idLibro = idLibro; }
 
-    public int getId() {
-        return id;
-    }
+    public int getIdTag()                { return idTag; }
+    public void setIdTag(int idTag)      { this.idTag = idTag; }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public String getTitulo()                    { return titulo; }
+    public void setTitulo(String titulo)         { this.titulo = titulo; }
 
-    public String getTitulo() {
-        return titulo;
-    }
+    public String getAutor()                     { return autor; }
+    public void setAutor(String autor)           { this.autor = autor; }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
+    public int getNPaginas()                     { return nPaginas; }
+    public void setNPaginas(int nPaginas)        { this.nPaginas = nPaginas; }
 
-    public String getAutor() {
-        return autor;
-    }
+    public String getEditorial()                 { return editorial; }
+    public void setEditorial(String editorial)   { this.editorial = editorial; }
 
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
+    public String getUrlLibro()                  { return urlLibro; }
+    public void setUrlLibro(String urlLibro)     { this.urlLibro = urlLibro; }
 
-    public String getEditorial() {
-        return editorial;
-    }
+    public String getUrlImagen()                 { return urlImagen; }
+    public void setUrlImagen(String urlImagen)   { this.urlImagen = urlImagen; }
 
-    public void setEditorial(String editorial) {
-        this.editorial = editorial;
+    @Override
+    public String toString() {
+        return "[" + idLibro + "] " + titulo + " - " + autor + " (" + editorial + ")";
     }
-
-    public int getAnio() {
-        return anio;
-    }
-
-    public void setAnio(int anio) {
-        this.anio = anio;
-    }
-    
 }
