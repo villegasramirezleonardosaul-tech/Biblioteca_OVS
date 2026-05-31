@@ -25,7 +25,7 @@ public class VentanaPrincipal extends JFrame {
     }
     
     private void configurarVentana(){
-        setTitle("Biblioteca_OVS"); 
+        setTitle("LitConect"); 
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         int ancho = pantalla.width;
         int largo = pantalla.height;

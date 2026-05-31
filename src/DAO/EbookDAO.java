@@ -46,9 +46,11 @@ public class EbookDAO {
         String sql = "SELECT * FROM Ebook";
         List<Ebook> lista = new ArrayList<>();
 
-        try (Connection con = Conexion.conectar(); 
-                PreparedStatement ps = con.prepareStatement(sql); 
-                ResultSet resultado = ps.executeQuery()) {
+        try (   Connection con = Conexion.conectar(); //establece la conexion
+                PreparedStatement ps = con.prepareStatement(sql);  //prepara la consulta;
+                ResultSet resultado = ps.executeQuery()) //Regresatodo
+        {
+            
             //Para buscar mientras haya resultados;
             while (resultado.next()) {
                 Ebook libro = new Ebook();
@@ -61,7 +63,7 @@ public class EbookDAO {
                 libro.setUrlLibro(resultado.getString("urlLibro"));
                 libro.setUrlImagen(resultado.getString("urlImagen"));
 
-                lista.add(libro); // Lo guardamos en nuestra lista de Java
+                lista.add(libro); 
             }
         } catch (SQLException e) {
             System.out.println("Error al listar libros: " + e.getMessage());

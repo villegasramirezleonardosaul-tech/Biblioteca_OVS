@@ -104,7 +104,7 @@ CREATE TABLE Mensaje(
 CREATE TABLE Respuesta(
     idRespuesta INT PRIMARY KEY AUTO_INCREMENT,
     idMensaje INT,
-    contenido VARCHAR(255), 
+    contenido VARCHAR(100), 
     fecha DATE DEFAULT (CURRENT_DATE), 
     FOREIGN KEY (idMensaje) REFERENCES Mensaje(idMensaje)
 );

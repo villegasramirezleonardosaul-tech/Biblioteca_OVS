@@ -10,7 +10,6 @@ import java.sql.SQLException;
 public class RespuestaDAO {
 
     public boolean insertarRespuesta(Respuestas respuesta) {
-        // También omitimos la fecha porque tiene DEFAULT en la base de datos
         String sql = "INSERT INTO Respuesta (idMensaje, contenido) VALUES (?, ?)";
         
         try (Connection con = Conexion.conectar();

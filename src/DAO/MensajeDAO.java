@@ -10,7 +10,6 @@ import java.sql.SQLException;
 public class MensajeDAO {
 
     public boolean insertarMensaje(Mensaje mensaje) {
-        // Nota: omitimos la columna 'fecha' porque en tu SQL tiene "default(current_date)" y se llena sola
         String sql = "INSERT INTO Mensaje (idComunidad, descripcion) VALUES (?, ?)";
         
         try (Connection con = Conexion.conectar();
