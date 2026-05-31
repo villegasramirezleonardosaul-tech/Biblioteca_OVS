@@ -13,6 +13,8 @@ public class VentanaPrincipal extends JFrame {
     private JPanel panelContenido;
     private JPanel panelPie;
     private final Color gris = Color.lightGray;
+    private int ancho;
+    private int largo;
     
     private PanelInicio inicio;
     
@@ -27,8 +29,8 @@ public class VentanaPrincipal extends JFrame {
     private void configurarVentana(){
         setTitle("LitConect"); 
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
-        int ancho = pantalla.width;
-        int largo = pantalla.height;
+         ancho = pantalla.width;
+         largo = pantalla.height;
         setSize(ancho, largo);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,15 +46,15 @@ public class VentanaPrincipal extends JFrame {
     private void fijos(){
         panelMenu = new JPanel();
         panelMenu.setLayout(null);
-        panelMenu.setBounds(0, 0, getWidth(), 100);
+        panelMenu.setBounds(0, 0, ancho, 100);
         panelMenu.setBackground(Color.red);
         panelContenido = new JPanel();
         panelContenido.setLayout(null);
-        panelContenido.setBounds(0, 100, getWidth(), 575);
+        panelContenido.setBounds(0, 100, ancho, 575);
         panelContenido.setBackground(gris);
         panelPie = new JPanel();
         panelPie.setLayout(null);
-        panelPie.setBounds(0, 675, getWidth(), getHeight());
+        panelPie.setBounds(0, 675, ancho, largo);
         panelPie.setBackground(Color.black);
         add(panelMenu);
         add(panelContenido);
@@ -62,7 +64,7 @@ public class VentanaPrincipal extends JFrame {
     private void catalogo(){
         inicio = new PanelInicio();
         inicio.setBackground(gris);
-        inicio.setBounds(0, 0, getWidth(), 575);
+        inicio.setBounds(0, 0, ancho, 575);
         panelContenido.add(inicio);
     }
     private void label(){}
