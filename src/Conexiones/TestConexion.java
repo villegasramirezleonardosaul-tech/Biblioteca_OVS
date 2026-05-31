@@ -38,7 +38,7 @@ public class TestConexion {
             }
 
         } catch (Exception e) {
-
+            //Conmprobar el error
             System.out.println("Error: " + e);
         }
     }

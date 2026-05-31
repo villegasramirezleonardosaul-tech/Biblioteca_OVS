@@ -1,3 +1,5 @@
+
+#para que la puedan crear cuando quieran;
 DROP DATABASE IF EXISTS LitConnect;
 CREATE DATABASE LitConnect;
 USE LitConnect;
@@ -6,7 +8,7 @@ CREATE TABLE TipoTag(
     idTag INT PRIMARY KEY AUTO_INCREMENT,
     descrip VARCHAR(30)
 );
-
+#Esto se puede cambiar pero de preferencia lo vamos a dejar asi
 INSERT INTO TipoTag (descrip) VALUES ('programacion');     
 INSERT INTO TipoTag (descrip) VALUES ('novela');           
 INSERT INTO TipoTag (descrip) VALUES ('fisica');           
@@ -26,7 +28,7 @@ CREATE TABLE Ebook(
     urlImagen VARCHAR(50)   
 );
 
-#Todos los libros
+#Esto si no tocar;
 INSERT INTO Ebook (idTag, titulo, autor, nPaginas, editorial, urlLibro, urlImagen) VALUES 
 (4, 'Algebra de Baldor', 'Aurelio Baldor', 576, 'Grupo Editorial Patria', 'Libros/Algebra_de_baldor', 'Imagenes/Algebra_de_baldor'),
 (6, 'Analisis Orientado a Objetos', 'Desconocido', 350, 'Editorial S.A.', 'Libros/Analisis_orientado', 'Imagenes/Analisis_orientado'),
@@ -48,7 +50,7 @@ CREATE TABLE TipoUsuario(
     idTipo INT PRIMARY KEY,
     usuario VARCHAR(30)
 );
-
+#Tampoco tocar
 INSERT INTO TipoUsuario  VALUES (1,'admin');
 INSERT INTO TipoUsuario  VALUES (2, 'user');
 
@@ -59,7 +61,7 @@ CREATE TABLE Usuario(
     contrasenia VARCHAR(30),
     FOREIGN KEY (idTipo) REFERENCES TipoUsuario (idTipo)
 );
-
+#Aqui si le pueden cambiar lo que sea pero avisen
 insert into Usuario(boleta,idTipo, nomUser, contrasenia) values
 (2025090083, 1, 'Chris', 'olajejexd'),
 (2025090570, 1, 'Leonardo', 'batizjejexd'),
@@ -83,7 +85,7 @@ CREATE TABLE Comunidad(
     idComunidad INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(30)
 );
-
+#Esta esta en base a los idTag;
 INSERT INTO Comunidad (nombre) VALUES ('Comunidad de Programación'); -- Relacionado con idTag: 1
 INSERT INTO Comunidad (nombre) VALUES ('Club de Novelas');           -- Relacionado con idTag: 2
 INSERT INTO Comunidad (nombre) VALUES ('Foro de Física');            -- Relacionado con idTag: 3
@@ -106,7 +108,7 @@ CREATE TABLE Respuesta(
     fecha DATE DEFAULT (CURRENT_DATE), 
     FOREIGN KEY (idMensaje) REFERENCES Mensaje(idMensaje)
 );
-
+#Esto para imprimir las tablas que quieran
 SELECT * FROM TipoTag;
 SELECT * FROM Ebook;
 SELECT * FROM Comunidad;

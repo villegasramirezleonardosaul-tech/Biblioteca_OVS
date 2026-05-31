@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Conexion {
-
-    // Nombre de la base de datos
+    
+    //Nombre de la base de datos
     private static final String BD = "LitConnect";
 
     // No tocar a menos que tengan otro puerto
