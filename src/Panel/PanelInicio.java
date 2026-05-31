@@ -32,19 +32,26 @@ public class PanelInicio extends JPanel {
                              
                              //Metanle ideas porque me quede seco
                              """);
-        presentacion.setBounds(100, 75, 500, 400);
+        presentacion.setBounds(100, 75, 500, 500);
         presentacion.setEditable(false);
-        presentacion.setBackground(Color.lightGray);
-        
+        presentacion.setBackground(Color.decode("#F4F4F6"));
         presentacion.setLineWrap(true);
         presentacion.setWrapStyleWord(true);
-        Font letra = new Font("Segoe UI", Font.PLAIN, 20);
+        Font letra = new Font("Segoe UI", Font.PLAIN, 22);
         presentacion.setFont(letra);
         add(presentacion);
+
+        litconect = new JLabel("LITCONECT",JLabel.RIGHT);
+        litconect.setBounds(750, 85, 500, 50); 
+        Font titulo = new Font("Segoe UI", Font.BOLD, 40);
+        litconect.setFont(titulo);
+        litconect.setForeground(Color.decode("#A61B1B"));
+
         ImageIcon imagen = new ImageIcon(getClass().getResource("/Imagenes/Empresa.png"));
         JImagen = new JLabel(imagen);
-        JImagen.setBounds(700, 75, 450, 400);
-        add(JImagen);
-        
+        JImagen.setBounds(750, 75, 500, 450); 
+
+        add(litconect); 
+        add(JImagen);  
     }
 }
