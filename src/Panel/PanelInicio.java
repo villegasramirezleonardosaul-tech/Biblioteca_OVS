@@ -17,6 +17,7 @@ public class PanelInicio extends JPanel {
         setLayout(null);
         //Area de trabajo de ontiveros
         presentacion = new JTextArea();
+        //Disponible a cambios
         presentacion.setText("""
                              Bienvenido a LitConect
                              
@@ -30,7 +31,6 @@ public class PanelInicio extends JPanel {
                              - Guardar ejemplares
                              - Y mas 
                              
-                             //Metanle ideas porque me quede seco
                              """);
         presentacion.setBounds(100, 75, 500, 500);
         presentacion.setEditable(false);

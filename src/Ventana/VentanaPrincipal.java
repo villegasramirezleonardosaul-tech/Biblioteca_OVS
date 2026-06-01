@@ -25,6 +25,11 @@ public class VentanaPrincipal extends JFrame {
     private JButton btnLogo;
     private JButton btnInicio;
     private JButton seleccionado;
+    private JButton btnBiblioteca;
+    private JButton btnForo;
+    private JButton btnFavoritos;
+    private JButton btnSecion;
+    private JButton btnCuenta;
 
     private JLabel marcaregistrada;
 
@@ -39,8 +44,10 @@ public class VentanaPrincipal extends JFrame {
 
     }
 
+    //Esta es para crear la ventana 
     private void configurarVentana() {
         setTitle("LitConect");
+        //Tamaño del monitor
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         ancho = pantalla.width;
         largo = pantalla.height;
@@ -48,6 +55,7 @@ public class VentanaPrincipal extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
+        //Este es la imagen de la ventanita 
         ImageIcon icono;
         icono = new ImageIcon(getClass().getResource("/Imagenes/logolimpio.png"));
         setIconImage(icono.getImage());
@@ -88,7 +96,7 @@ public class VentanaPrincipal extends JFrame {
         ImageIcon iconoOriginal = new ImageIcon(
                 getClass().getResource("/Imagenes/logolimpio.png")
         );
-
+        //Sirve pa escalar imagenes 
         Image imagenEscalada = iconoOriginal.getImage()
                 .getScaledInstance(80, 80, Image.SCALE_SMOOTH);
 
@@ -100,37 +108,69 @@ public class VentanaPrincipal extends JFrame {
         btnLogo.setContentAreaFilled(false);
 
         btnInicio = new JButton("Inicio");
-        btnInicio.setBounds(100, 10, 100, 50);
+        btnInicio.setBounds(100, 25, 100, 50);
+        btnInicio.setForeground(Color.BLACK);
+        
+        btnBiblioteca = new JButton("Bilbioteca");
+        btnBiblioteca.setBounds(210, 25, 100, 50);
+                btnBiblioteca.setForeground(Color.BLACK);
 
+        
+        btnFavoritos = new JButton("Favoritos");
+        btnFavoritos.setBounds(320, 25, 100, 50);
+                btnFavoritos.setForeground(Color.BLACK);
+
+        
+        btnForo = new JButton("Foros");
+        btnForo.setBounds(430, 25, 100, 50);
+                btnForo.setForeground(Color.BLACK);
+
+        
+        btnSecion = new JButton("Login");
+        btnSecion.setBounds(ancho-120, 25, 100, 50);
+        btnSecion.setBackground(Color.GREEN);
+                btnSecion.setForeground(Color.BLACK);
+
+        
         eventos();
-
+        
+        
+        panelMenu.add(btnSecion);
+        panelMenu.add(btnFavoritos);
+        panelMenu.add(btnForo);
+        panelMenu.add(btnBiblioteca);
         panelMenu.add(btnInicio);
         panelMenu.add(btnLogo);
 
     }
-
+//Esta funcion es pa que aparesca rojito el boton
     private void seleccionarBoton(JButton boton) {
-         btnInicio.setBackground(Color.BLACK);
+        seleccionado = boton;
+        
+        btnInicio.setBackground(Color.GRAY);
+        btnBiblioteca.setBackground(Color.GRAY);
+        btnFavoritos.setBackground(Color.GRAY);
+        btnForo.setBackground(Color.GRAY);
+        
+        
+        btnLogo.setBorderPainted(false);
 
-    btnLogo.setBorderPainted(false);
+        if (boton == btnLogo) {
 
-    if(boton == btnLogo){
+            btnLogo.setBorderPainted(true);
+            btnLogo.setBorder(
+                    BorderFactory.createLineBorder(
+                            Color.decode("#A61B1B"),
+                            3
+                    )
+            );
 
-        btnLogo.setBorderPainted(true);
-        btnLogo.setBorder(
-            BorderFactory.createLineBorder(
-                Color.decode("#A61B1B"),
-                3
-            )
-        );
+        } else {
+            boton.setForeground(Color.decode("#DCA842"));
+            boton.setBackground(Color.decode("#A61B1B"));
 
-    }else{
+        }
 
-        boton.setBackground(Color.decode("#A61B1B"));
-
-    }
-
-    seleccionado = boton;
     }
 
     private void catalogo() {
@@ -153,15 +193,15 @@ public class VentanaPrincipal extends JFrame {
 
     private void eventos() {
         manita(btnLogo);
-        btnLogo.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnLogo.addMouseListener(new MouseAdapter() {
 
             @Override
-            public void mouseEntered(java.awt.event.MouseEvent e) {
+            public void mouseEntered(MouseEvent e) {
 
                 if (seleccionado != btnLogo) {
                     btnLogo.setBorderPainted(true);
                     btnLogo.setBorder(
-                            javax.swing.BorderFactory.createLineBorder(
+                            BorderFactory.createLineBorder(
                                     Color.LIGHT_GRAY,
                                     2
                             )
@@ -171,7 +211,7 @@ public class VentanaPrincipal extends JFrame {
             }
 
             @Override
-            public void mouseExited(java.awt.event.MouseEvent e) {
+            public void mouseExited(MouseEvent e) {
 
                 if (seleccionado != btnLogo) {
                     btnLogo.setBorderPainted(false);
@@ -180,6 +220,7 @@ public class VentanaPrincipal extends JFrame {
             }
 
         });
+        
         manita(btnInicio);
         btnInicio.addActionListener(e -> {
 
@@ -198,13 +239,37 @@ public class VentanaPrincipal extends JFrame {
 
         });
         Listenermouse(btnInicio);
-    }
+        
+        manita(btnBiblioteca);
+        Listenermouse(btnBiblioteca);
+        
+        manita(btnFavoritos);
+        Listenermouse(btnFavoritos);
+        
+        manita(btnForo);
+        Listenermouse(btnForo);
+        
+        manita(btnSecion);
+        btnSecion.addMouseListener(new MouseAdapter() {
 
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                btnSecion.setBackground(Color.decode("#88E788"));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+               btnSecion.setBackground(Color.GREEN);
+            }
+        });
+    }
+//Para seleccionar el color del boton al pasar el mouse 
     private void Listenermouse(JButton boton) {
         boton.addMouseListener(new MouseAdapter() {
 
             @Override
             public void mouseEntered(MouseEvent e) {
+                boton.setForeground(Color.BLACK);
                 boton.setBackground(Color.LIGHT_GRAY);
             }
 
@@ -214,12 +279,13 @@ public class VentanaPrincipal extends JFrame {
 
                     boton.setBackground(Color.GRAY);
                 } else {
+                    boton.setForeground(Color.decode("#DCA842"));
                     boton.setBackground(Color.decode("#A61B1B"));
                 }
             }
         });
     }
-
+//esta es para que se vea una manita en el mouse 
     private void manita(JButton boton) {
         boton.setCursor(
                 Cursor.getPredefinedCursor(

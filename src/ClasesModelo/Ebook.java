@@ -10,10 +10,8 @@ public class Ebook {
     private String urlLibro;
     private String urlImagen;
 
-    // Constructor vacío (Es obligatorio para que el ResultSet del DAO pueda instanciarlo)
     public Ebook() {}
-
-    // Constructor lleno (Útil por si en algún momento necesitan crear objetos libro rápidamente)
+    
     public Ebook(int idLibro, int idTag, String titulo, String autor, int nPaginas, String editorial, String urlLibro, String urlImagen) {
         this.idLibro = idLibro;
         this.idTag = idTag;
@@ -25,10 +23,6 @@ public class Ebook {
         this.urlImagen = urlImagen;
     }
 
-    // ========================================================
-    // GETTERS Y SETTERS
-    // ========================================================
-    
     public int getIdLibro() {
         return idLibro;
     }
