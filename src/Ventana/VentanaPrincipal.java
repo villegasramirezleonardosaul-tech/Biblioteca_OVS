@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import Panel.*;
+import static Ventana.VentanaAcceder.usuario;
 import java.awt.Font;
 import java.awt.Image;
 import javax.swing.JButton;
@@ -14,7 +15,6 @@ import javax.swing.JLabel;
 import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.BorderFactory;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -36,6 +36,7 @@ public class VentanaPrincipal extends JFrame {
     private int ancho;
     private int largo;
 
+
     private PanelInicio inicio;
 
     public VentanaPrincipal() {
@@ -46,11 +47,16 @@ public class VentanaPrincipal extends JFrame {
 
     //Esta es para crear la ventana 
     private void configurarVentana() {
+        usuario = null;
         setTitle("LitConect");
         //Tamaño del monitor
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         ancho = pantalla.width;
         largo = pantalla.height;
+        if (false) {
+            ancho = ancho - 500;
+            largo = largo - 300;
+        }
         setSize(ancho, largo);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -90,51 +96,47 @@ public class VentanaPrincipal extends JFrame {
 
     }
 
-    private void botones() {
-        btnLogo = new JButton();
-        btnLogo.setBounds(10, 10, 80, 80);
+    private void Imagen(JButton boton, String txt) {
         ImageIcon iconoOriginal = new ImageIcon(
-                getClass().getResource("/Imagenes/logolimpio.png")
+                getClass().getResource("/Botones/" + txt + ".png")
         );
         //Sirve pa escalar imagenes 
         Image imagenEscalada = iconoOriginal.getImage()
-                .getScaledInstance(80, 80, Image.SCALE_SMOOTH);
+                .getScaledInstance(160, 80, Image.SCALE_SMOOTH);
 
         ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
 
-        btnLogo.setIcon(iconoEscalado);
-        btnLogo.setBorderPainted(false);
-        btnLogo.setFocusPainted(false);
-        btnLogo.setContentAreaFilled(false);
+        boton.setIcon(iconoEscalado);
+        boton.setBorder(null);
+    }
 
-        btnInicio = new JButton("Inicio");
-        btnInicio.setBounds(100, 25, 100, 50);
-        btnInicio.setForeground(Color.BLACK);
-        
-        btnBiblioteca = new JButton("Bilbioteca");
-        btnBiblioteca.setBounds(210, 25, 100, 50);
-                btnBiblioteca.setForeground(Color.BLACK);
+    private void botones() {
+        btnLogo = new JButton();
+        btnLogo.setBounds(10, 10, 80, 80);
+        Imagen(btnLogo, "OVS");
 
-        
-        btnFavoritos = new JButton("Favoritos");
-        btnFavoritos.setBounds(320, 25, 100, 50);
-                btnFavoritos.setForeground(Color.BLACK);
+        btnInicio = new JButton();
+        btnInicio.setBounds(100, 30, 100, 40);
+        Imagen(btnInicio, "Inicio");
 
-        
-        btnForo = new JButton("Foros");
-        btnForo.setBounds(430, 25, 100, 50);
-                btnForo.setForeground(Color.BLACK);
+        btnBiblioteca = new JButton();
+        btnBiblioteca.setBounds(210, 30, 100, 40);
+        Imagen(btnBiblioteca, "Biblioteca");
 
-        
-        btnSecion = new JButton("Login");
-        btnSecion.setBounds(ancho-120, 25, 100, 50);
-        btnSecion.setBackground(Color.GREEN);
-                btnSecion.setForeground(Color.BLACK);
+        btnFavoritos = new JButton();
+        btnFavoritos.setBounds(320, 30, 100, 40);
+        Imagen(btnFavoritos, "Favoritos");
 
-        
+        btnForo = new JButton();
+        btnForo.setBounds(430, 30, 100, 40);
+        Imagen(btnForo, "Foros");
+
+        btnSecion = new JButton();
+        btnSecion.setBounds(ancho - 120, 25, 100, 50);
+        Imagen(btnSecion, "Login");
+
         eventos();
-        
-        
+
         panelMenu.add(btnSecion);
         panelMenu.add(btnFavoritos);
         panelMenu.add(btnForo);
@@ -144,32 +146,20 @@ public class VentanaPrincipal extends JFrame {
 
     }
 //Esta funcion es pa que aparesca rojito el boton
-    private void seleccionarBoton(JButton boton) {
+
+    private void seleccionarBoton(JButton boton, String txt) {
         seleccionado = boton;
-        
-        btnInicio.setBackground(Color.GRAY);
-        btnBiblioteca.setBackground(Color.GRAY);
-        btnFavoritos.setBackground(Color.GRAY);
-        btnForo.setBackground(Color.GRAY);
-        
-        
-        btnLogo.setBorderPainted(false);
 
-        if (boton == btnLogo) {
+        ImageIcon iconoOriginal = new ImageIcon(
+                getClass().getResource("/Botones/" + txt + "_S.png")
+        );
+        //Sirve pa escalar imagenes 
+        Image imagenEscalada = iconoOriginal.getImage()
+                .getScaledInstance(160, 80, Image.SCALE_SMOOTH);
 
-            btnLogo.setBorderPainted(true);
-            btnLogo.setBorder(
-                    BorderFactory.createLineBorder(
-                            Color.decode("#A61B1B"),
-                            3
-                    )
-            );
+        ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
 
-        } else {
-            boton.setForeground(Color.decode("#DCA842"));
-            boton.setBackground(Color.decode("#A61B1B"));
-
-        }
+        boton.setIcon(iconoEscalado);
 
     }
 
@@ -177,7 +167,8 @@ public class VentanaPrincipal extends JFrame {
         inicio = new PanelInicio();
         inicio.setBackground(Color.decode("#F4F4F6"));
         inicio.setBounds(0, 0, ancho, 575);
-        seleccionarBoton(btnInicio);
+        seleccionarBoton(btnInicio, "Inicio");
+
         panelContenido.add(inicio);
     }
 
@@ -193,38 +184,13 @@ public class VentanaPrincipal extends JFrame {
 
     private void eventos() {
         manita(btnLogo);
-        btnLogo.addMouseListener(new MouseAdapter() {
+        Listenermouse(btnLogo, "OVS");
 
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-                if (seleccionado != btnLogo) {
-                    btnLogo.setBorderPainted(true);
-                    btnLogo.setBorder(
-                            BorderFactory.createLineBorder(
-                                    Color.LIGHT_GRAY,
-                                    2
-                            )
-                    );
-                }
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-                if (seleccionado != btnLogo) {
-                    btnLogo.setBorderPainted(false);
-                }
-
-            }
-
-        });
-        
         manita(btnInicio);
+        Listenermouse(btnInicio, "Inicio");
         btnInicio.addActionListener(e -> {
 
-            seleccionarBoton(btnInicio);
+            seleccionarBoton(btnInicio, "Inicio");
 
             panelContenido.removeAll();
 
@@ -238,54 +204,79 @@ public class VentanaPrincipal extends JFrame {
             panelContenido.repaint();
 
         });
-        Listenermouse(btnInicio);
-        
+
         manita(btnBiblioteca);
-        Listenermouse(btnBiblioteca);
-        
+        Listenermouse(btnBiblioteca, "Biblioteca");
+
         manita(btnFavoritos);
-        Listenermouse(btnFavoritos);
-        
+        Listenermouse(btnFavoritos, "Favoritos");
+
         manita(btnForo);
-        Listenermouse(btnForo);
-        
+        Listenermouse(btnForo, "Foros");
+
         manita(btnSecion);
-        btnSecion.addMouseListener(new MouseAdapter() {
+        Listenermouse(btnSecion, "Login");
+        btnSecion.addActionListener(e -> {
 
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                btnSecion.setBackground(Color.decode("#88E788"));
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-               btnSecion.setBackground(Color.GREEN);
+           VentanaAcceder acceder = new VentanaAcceder();
+           acceder.setModal(true);
+           acceder.setVisible(true);
+            if (usuario!=null) {
+                btnSecion.setVisible(false);
             }
         });
+
     }
 //Para seleccionar el color del boton al pasar el mouse 
-    private void Listenermouse(JButton boton) {
+
+    private void Listenermouse(JButton boton, String txt) {
         boton.addMouseListener(new MouseAdapter() {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                boton.setForeground(Color.BLACK);
-                boton.setBackground(Color.LIGHT_GRAY);
+                ImageIcon iconoOriginal = new ImageIcon(
+                        getClass().getResource("/Botones/" + txt + "_B.png")
+                );
+                //Sirve pa escalar imagenes 
+                Image imagenEscalada = iconoOriginal.getImage()
+                        .getScaledInstance(160, 80, Image.SCALE_SMOOTH);
+
+                ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
+
+                boton.setIcon(iconoEscalado);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 if (seleccionado != boton) {
 
-                    boton.setBackground(Color.GRAY);
+                    ImageIcon iconoOriginal = new ImageIcon(
+                            getClass().getResource("/Botones/" + txt + ".png")
+                    );
+                    //Sirve pa escalar imagenes 
+                    Image imagenEscalada = iconoOriginal.getImage()
+                            .getScaledInstance(160, 80, Image.SCALE_SMOOTH);
+
+                    ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
+
+                    boton.setIcon(iconoEscalado);
                 } else {
-                    boton.setForeground(Color.decode("#DCA842"));
-                    boton.setBackground(Color.decode("#A61B1B"));
+                    ImageIcon iconoOriginal = new ImageIcon(
+                            getClass().getResource("/Botones/" + txt + "_S.png")
+                    );
+                    //Sirve pa escalar imagenes 
+                    Image imagenEscalada = iconoOriginal.getImage()
+                            .getScaledInstance(160, 80, Image.SCALE_SMOOTH);
+
+                    ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
+
+                    boton.setIcon(iconoEscalado);
                 }
             }
         });
     }
 //esta es para que se vea una manita en el mouse 
+
     private void manita(JButton boton) {
         boton.setCursor(
                 Cursor.getPredefinedCursor(

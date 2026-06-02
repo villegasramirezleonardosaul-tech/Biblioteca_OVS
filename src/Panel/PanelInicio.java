@@ -2,6 +2,7 @@ package Panel;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -29,7 +30,6 @@ public class PanelInicio extends JPanel {
                              - Consultar libros
                              - Participar en Foros
                              - Guardar ejemplares
-                             - Y mas 
                              
                              """);
         presentacion.setBounds(100, 75, 500, 500);
@@ -41,17 +41,19 @@ public class PanelInicio extends JPanel {
         presentacion.setFont(letra);
         add(presentacion);
 
-        litconect = new JLabel("LITCONECT",JLabel.RIGHT);
-        litconect.setBounds(750, 85, 500, 50); 
-        Font titulo = new Font("Segoe UI", Font.BOLD, 40);
-        litconect.setFont(titulo);
-        litconect.setForeground(Color.decode("#A61B1B"));
+        
 
-        ImageIcon imagen = new ImageIcon(getClass().getResource("/Imagenes/Empresa.png"));
-        JImagen = new JLabel(imagen);
-        JImagen.setBounds(750, 75, 500, 450); 
+        ImageIcon imagen = new ImageIcon(getClass().getResource("/Imagenes/LITCONECT.png"));
+        
+        Image imagenEscalada = imagen.getImage()
+                .getScaledInstance(400, 400, Image.SCALE_SMOOTH);
 
-        add(litconect); 
+        ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
+
+        JImagen = new JLabel(iconoEscalado);
+        JImagen.setBounds(850, 75, 400, 400); 
+
+        
         add(JImagen);  
     }
 }

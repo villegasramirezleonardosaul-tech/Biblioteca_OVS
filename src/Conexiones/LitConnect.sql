@@ -55,7 +55,7 @@ INSERT INTO TipoUsuario  VALUES (1,'admin');
 INSERT INTO TipoUsuario  VALUES (2, 'user');
 
 CREATE TABLE Usuario(
-    boleta INT PRIMARY KEY,
+    boleta VARCHAR(15) PRIMARY KEY,
     idTipo INT,
     nomUser VARCHAR(30),
     contrasenia VARCHAR(30),
@@ -63,10 +63,10 @@ CREATE TABLE Usuario(
 );
 #Aqui si le pueden cambiar lo que sea pero avisen
 insert into Usuario(boleta,idTipo, nomUser, contrasenia) values
-(2025090083, 1, 'Chris', 'olajejexd'),
-(2025090570, 1, 'Leonardo', 'batizjejexd'),
-(2025090048, 1,' Brandon', 'litconnectjejexd'),
-(2025090582, 1, 'Juan', 'makinamijejedxd');
+('2025090083', 1, 'Chris', 'olajejexd'),
+('2025090570', 1, 'Leonardo', 'batizjejexd'),
+('2025090048', 1,' Brandon', 'litconnectjejexd'),
+('2025090582', 1, 'Juan', 'makinamijejedxd');
     
 
 

@@ -1,24 +1,24 @@
 package ClasesModelo;
 
 public class Usuario {
-    private int boleta;
+    private String boleta;
     private int idTipo;
     private String nomUser;
     private String contrasenia;
 
     public Usuario() {}
 
-    public Usuario(int boleta, int idTipo, String nomUser, String contrasenia) {
+    public Usuario(String boleta, int idTipo, String nomUser, String contrasenia) {
         this.boleta = boleta;
         this.idTipo = idTipo;
         this.nomUser = nomUser;
         this.contrasenia = contrasenia;
     }
 
-    public int getBoleta() { 
+    public String getBoleta() { 
         return boleta; 
     }
-    public void setBoleta(int boleta) { 
+    public void setBoleta(String boleta) { 
         this.boleta = boleta; 
     }
 
