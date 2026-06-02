@@ -96,7 +96,7 @@ public class VentanaPrincipal extends JFrame {
 
     }
 
-    private void Imagen(JButton boton, String txt) {
+    public void Imagen(JButton boton, String txt) {
         ImageIcon iconoOriginal = new ImageIcon(
                 getClass().getResource("/Botones/" + txt + ".png")
         );

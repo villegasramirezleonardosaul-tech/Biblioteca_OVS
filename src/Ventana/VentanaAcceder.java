@@ -3,8 +3,11 @@ package Ventana;
 import ClasesModelo.Usuario;
 import DAO.UsuarioDAO;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -42,9 +45,26 @@ public class VentanaAcceder extends JDialog {
 
         JPasswordField txtContrasena = new JPasswordField();
         txtContrasena.setBounds(40, 140, 140, 25);
+        
+        JButton btnAcceder = new JButton("Crear cuenta");
+        btnAcceder.setBounds(170,270,60,30);
+        Imagen(btnAcceder, "Crear");
+        manita(btnAcceder);
+        Listenermouse(btnAcceder, "Crear");
+        btnAcceder.addActionListener(e ->{
+            dispose();
+            VentanaCrear cambio = new VentanaCrear();
+            cambio.setModal(true);
+            cambio.setVisible(true);
+        });
+        
 
         JButton btnIntentar = new JButton("Acceder");
-        btnIntentar.setBounds(140, 310, 100, 30);
+        btnIntentar.setBounds(170, 310, 60, 30);
+        Imagen(btnIntentar, "Acceder");
+        manita(btnIntentar);
+        Listenermouse(btnIntentar, "Acceder");
+        
         btnIntentar.addActionListener(e -> {
 
             String boleta = txtBoleta.getText();
@@ -80,7 +100,10 @@ public class VentanaAcceder extends JDialog {
         });
 
         JButton btnSalir = new JButton("Cerrar");
-        btnSalir.setBounds(140, 350, 100, 30);
+        btnSalir.setBounds(170, 350, 60, 30);
+        Imagen(btnSalir, "Cerrar");
+        manita(btnSalir);
+        Listenermouse(btnSalir, "Cerrar");
 
         btnSalir.addActionListener(e -> dispose());
         setUndecorated(true);
@@ -109,6 +132,7 @@ public class VentanaAcceder extends JDialog {
 
         setContentPane(fondo);
 
+        fondo.add(btnAcceder);
         fondo.add(titulo);
         fondo.add(lblBoleta);
         fondo.add(txtBoleta);
@@ -116,5 +140,61 @@ public class VentanaAcceder extends JDialog {
         fondo.add(txtContrasena);
         fondo.add(btnIntentar);
         fondo.add(btnSalir);
+    }
+    public void Imagen(JButton boton, String txt) {
+        ImageIcon iconoOriginal = new ImageIcon(
+                getClass().getResource("/Botones/" + txt + ".png")
+        );
+        //Sirve pa escalar imagenes 
+        Image imagenEscalada = iconoOriginal.getImage()
+                .getScaledInstance(160, 80, Image.SCALE_SMOOTH);
+
+        ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
+
+        boton.setIcon(iconoEscalado);
+        boton.setBorder(null);
+    }
+    private void manita(JButton boton) {
+        boton.setCursor(
+                Cursor.getPredefinedCursor(
+                        Cursor.HAND_CURSOR
+                )
+        );
+    }
+    private void Listenermouse(JButton boton, String txt) {
+        boton.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                ImageIcon iconoOriginal = new ImageIcon(
+                        getClass().getResource("/Botones/" + txt + "_B.png")
+                );
+                //Sirve pa escalar imagenes 
+                Image imagenEscalada = iconoOriginal.getImage()
+                        .getScaledInstance(160, 80, Image.SCALE_SMOOTH);
+
+                ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
+
+                boton.setIcon(iconoEscalado);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+              
+
+                    ImageIcon iconoOriginal = new ImageIcon(
+                            getClass().getResource("/Botones/" + txt + ".png")
+                    );
+                    //Sirve pa escalar imagenes 
+                    Image imagenEscalada = iconoOriginal.getImage()
+                            .getScaledInstance(160, 80, Image.SCALE_SMOOTH);
+
+                    ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
+
+                    boton.setIcon(iconoEscalado);
+             
+                
+            }
+        });
     }
 }
