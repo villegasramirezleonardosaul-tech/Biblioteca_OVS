@@ -64,7 +64,7 @@ CREATE TABLE Usuario(
 #Aqui si le pueden cambiar lo que sea pero avisen
 insert into Usuario(boleta,idTipo, nomUser, contrasenia) values
 ('2025090083', 1, 'Chris', 'olajejexd'),
-('2025090570', 1, 'Leonardo', 'batizjejexd'),
+('2025090570', 1, 'Leonardo', '1234'),
 ('2025090048', 1,' Brandon', 'litconnectjejexd'),
 ('2025090582', 1, 'Juan', 'makinamijejedxd');
     
@@ -75,8 +75,7 @@ insert into Usuario(boleta,idTipo, nomUser, contrasenia) values
 CREATE TABLE ListaFavoritos(
     idLista INT PRIMARY KEY AUTO_INCREMENT,
     idLibro INT,
-    boleta INT,
-    nomLista VARCHAR(30),
+    boleta varchar(15),
     FOREIGN KEY (idLibro) REFERENCES Ebook (idLibro),
     FOREIGN KEY (boleta) REFERENCES Usuario (boleta)
 );
@@ -86,12 +85,12 @@ CREATE TABLE Comunidad(
     nombre VARCHAR(30)
 );
 #Esta esta en base a los idTag;
-INSERT INTO Comunidad (nombre) VALUES ('Comunidad de Programación'); -- Relacionado con idTag: 1
-INSERT INTO Comunidad (nombre) VALUES ('Club de Novelas');           -- Relacionado con idTag: 2
-INSERT INTO Comunidad (nombre) VALUES ('Foro de Física');            -- Relacionado con idTag: 3
-INSERT INTO Comunidad (nombre) VALUES ('Rincón de Matemáticas');     -- Relacionado con idTag: 4
-INSERT INTO Comunidad (nombre) VALUES ('Base de Datos Expertos');    -- Relacionado con idTag: 5
-INSERT INTO Comunidad (nombre) VALUES ('Ingeniería y Control');      -- Relacionado con idTag: 6
+INSERT INTO Comunidad (nombre) VALUES ('Comunidad de Programación'); 
+INSERT INTO Comunidad (nombre) VALUES ('Club de Novelas');           
+INSERT INTO Comunidad (nombre) VALUES ('Foro de Física');            
+INSERT INTO Comunidad (nombre) VALUES ('Rincón de Matemáticas');     
+INSERT INTO Comunidad (nombre) VALUES ('Base de Datos Expertos');    
+INSERT INTO Comunidad (nombre) VALUES ('Ingeniería y Control');      
 
 CREATE TABLE Mensaje(
     idMensaje INT PRIMARY KEY AUTO_INCREMENT,

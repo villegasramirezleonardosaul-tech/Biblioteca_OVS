@@ -18,7 +18,7 @@ public class PanelOVS extends JPanel {
         titulo = new JLabel("Sobre LitConect");
         titulo.setFont(new Font("Arial", Font.BOLD, 30));
         titulo.setForeground(Color.BLACK);
-        titulo.setBounds(100, 50, 100, 50);
+        titulo.setBounds(800, 50, 400, 50);
         
         ImageIcon imagen = new ImageIcon(getClass().getResource("/Imagenes/Biblioteca.png"));
         
@@ -28,7 +28,7 @@ public class PanelOVS extends JPanel {
         ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
 
         biblioteca = new JLabel(iconoEscalado);
-        biblioteca.setBounds(850, 75, 400, 400); 
+        biblioteca.setBounds(100, 75, 400, 400); 
 
         
         add(titulo);  

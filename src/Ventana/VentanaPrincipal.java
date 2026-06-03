@@ -33,8 +33,8 @@ public class VentanaPrincipal extends JFrame {
 
     private JLabel marcaregistrada;
 
-    private int ancho;
-    private int largo;
+    private static int ancho;
+    private static int largo;
 
     public VentanaPrincipal() {
         configurarVentana();
@@ -54,6 +54,8 @@ public class VentanaPrincipal extends JFrame {
             ancho = ancho - 500;
             largo = largo - 300;
         }
+        System.out.println(ancho);
+        System.out.println(largo);
         setSize(ancho, largo);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -218,6 +220,21 @@ public class VentanaPrincipal extends JFrame {
 
         manita(btnBiblioteca);
         Listenermouse(btnBiblioteca, "Biblioteca");
+        btnBiblioteca.addActionListener(e -> {
+            seleccionarBoton(btnBiblioteca, "Biblioteca");
+
+            panelContenido.removeAll();
+
+            PanelBiblioteca biblioteca = new PanelBiblioteca();
+            biblioteca.setBackground(Color.decode("#F4F4F6"));
+            biblioteca.setBounds(0, 0, ancho, 575);
+
+            panelContenido.add(biblioteca);
+
+            panelContenido.revalidate();
+            panelContenido.repaint();
+        });
+
 
         manita(btnFavoritos);
         Listenermouse(btnFavoritos, "Favoritos");
