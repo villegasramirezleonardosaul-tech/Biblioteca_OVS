@@ -47,7 +47,7 @@ public class VentanaAcceder extends JDialog {
         txtContrasena.setBounds(40, 140, 140, 25);
         
         JButton btnAcceder = new JButton("Crear cuenta");
-        btnAcceder.setBounds(170,270,60,30);
+        btnAcceder.setBounds(135,270,145,30);
         Imagen(btnAcceder, "Crear");
         manita(btnAcceder);
         Listenermouse(btnAcceder, "Crear");
@@ -72,31 +72,51 @@ public class VentanaAcceder extends JDialog {
             password = new String(txtContrasena.getPassword());
 
             UsuarioDAO dao = new UsuarioDAO();
+            
+            if (!boleta.isEmpty()) {
+                if (!password.isEmpty()) {
+                    
+                    usuario
+                            = dao.consultarUsuario(
+                                    boleta,
+                                    password
+                            );
 
-            usuario
-                    = dao.consultarUsuario(
-                            boleta,
-                            password
-                    );
+                    if (usuario != null) {
 
-            if (usuario != null) {
+                        JOptionPane.showMessageDialog(
+                                this,
+                                "Bienvenido "
+                                + usuario.getNomUser()
+                        );
 
-                JOptionPane.showMessageDialog(
+                        dispose();
+
+                    } else {
+
+                        JOptionPane.showMessageDialog(
+                                this,
+                                "Boleta o contraseña incorrecta"
+                        );
+
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(
                         this,
-                        "Bienvenido "
-                        + usuario.getNomUser()
+                        "No hay contraseña"
                 );
-
-                dispose();
-
-            } else {
-
-                JOptionPane.showMessageDialog(
-                        this,
-                        "Boleta o contraseña incorrecta"
-                );
-
+                }
+                
+                
             }
+            else{
+                JOptionPane.showMessageDialog(
+                        this,
+                        "No hay boleta"
+                );
+            }
+
         });
 
         JButton btnSalir = new JButton("Cerrar");

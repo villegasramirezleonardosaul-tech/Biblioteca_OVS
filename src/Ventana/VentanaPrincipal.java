@@ -36,13 +36,10 @@ public class VentanaPrincipal extends JFrame {
     private int ancho;
     private int largo;
 
-
-    private PanelInicio inicio;
-
     public VentanaPrincipal() {
         configurarVentana();
         paneles();
-
+        seleccionarBoton(btnInicio, "Inicio");
     }
 
     //Esta es para crear la ventana 
@@ -113,31 +110,30 @@ public class VentanaPrincipal extends JFrame {
     private void botones() {
         btnLogo = new JButton();
         btnLogo.setBounds(10, 10, 80, 80);
-        Imagen(btnLogo, "OVS");
 
         btnInicio = new JButton();
         btnInicio.setBounds(100, 30, 100, 40);
-        Imagen(btnInicio, "Inicio");
 
         btnBiblioteca = new JButton();
         btnBiblioteca.setBounds(210, 30, 100, 40);
-        Imagen(btnBiblioteca, "Biblioteca");
 
         btnFavoritos = new JButton();
         btnFavoritos.setBounds(320, 30, 100, 40);
-        Imagen(btnFavoritos, "Favoritos");
 
         btnForo = new JButton();
         btnForo.setBounds(430, 30, 100, 40);
-        Imagen(btnForo, "Foros");
+
+        btnCuenta = new JButton();
+        btnCuenta.setBounds(ancho - 120, 25, 100, 50);
+        btnCuenta.setVisible(false);
 
         btnSecion = new JButton();
         btnSecion.setBounds(ancho - 120, 25, 100, 50);
         Imagen(btnSecion, "Login");
-
         eventos();
 
         panelMenu.add(btnSecion);
+        panelMenu.add(btnCuenta);
         panelMenu.add(btnFavoritos);
         panelMenu.add(btnForo);
         panelMenu.add(btnBiblioteca);
@@ -148,23 +144,24 @@ public class VentanaPrincipal extends JFrame {
 //Esta funcion es pa que aparesca rojito el boton
 
     private void seleccionarBoton(JButton boton, String txt) {
+        
+        Imagen(btnBiblioteca, "Biblioteca");
+        Imagen(btnCuenta, "Cuenta");
+        Imagen(btnFavoritos, "Favoritos");
+        Imagen(btnForo, "Foros");
+        Imagen(btnInicio, "Inicio");
+        Imagen(btnLogo, "OVS");
+        
         seleccionado = boton;
+        
+        txt +="_S";
 
-        ImageIcon iconoOriginal = new ImageIcon(
-                getClass().getResource("/Botones/" + txt + "_S.png")
-        );
-        //Sirve pa escalar imagenes 
-        Image imagenEscalada = iconoOriginal.getImage()
-                .getScaledInstance(160, 80, Image.SCALE_SMOOTH);
-
-        ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
-
-        boton.setIcon(iconoEscalado);
+        Imagen(boton, txt);
 
     }
 
     private void catalogo() {
-        inicio = new PanelInicio();
+        PanelInicio inicio = new PanelInicio();
         inicio.setBackground(Color.decode("#F4F4F6"));
         inicio.setBounds(0, 0, ancho, 575);
         seleccionarBoton(btnInicio, "Inicio");
@@ -185,6 +182,20 @@ public class VentanaPrincipal extends JFrame {
     private void eventos() {
         manita(btnLogo);
         Listenermouse(btnLogo, "OVS");
+        btnLogo.addActionListener(e -> {
+            seleccionarBoton(btnLogo, "OVS");
+
+            panelContenido.removeAll();
+
+            PanelOVS ovs = new PanelOVS();
+            ovs.setBackground(Color.decode("#F4F4F6"));
+            ovs.setBounds(0, 0, ancho, 575);
+
+            panelContenido.add(ovs);
+
+            panelContenido.revalidate();
+            panelContenido.repaint();
+        });
 
         manita(btnInicio);
         Listenermouse(btnInicio, "Inicio");
@@ -194,7 +205,7 @@ public class VentanaPrincipal extends JFrame {
 
             panelContenido.removeAll();
 
-            inicio = new PanelInicio();
+            PanelInicio inicio = new PanelInicio();
             inicio.setBackground(Color.decode("#F4F4F6"));
             inicio.setBounds(0, 0, ancho, 575);
 
@@ -214,15 +225,19 @@ public class VentanaPrincipal extends JFrame {
         manita(btnForo);
         Listenermouse(btnForo, "Foros");
 
+        manita(btnCuenta);
+        Listenermouse(btnCuenta, "Cuenta");
+
         manita(btnSecion);
         Listenermouse(btnSecion, "Login");
         btnSecion.addActionListener(e -> {
 
-           VentanaAcceder acceder = new VentanaAcceder();
-           acceder.setModal(true);
-           acceder.setVisible(true);
-            if (usuario!=null) {
+            VentanaAcceder acceder = new VentanaAcceder();
+            acceder.setModal(true);
+            acceder.setVisible(true);
+            if (usuario != null) {
                 btnSecion.setVisible(false);
+                btnCuenta.setVisible(true);
             }
         });
 
