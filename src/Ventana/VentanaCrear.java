@@ -2,7 +2,7 @@ package Ventana;
 
 import DAO.UsuarioDAO;
 import ClasesModelo.Usuario;
-import static Ventana.VentanaAcceder.usuario;
+import static Memoria.Cache.usuario;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;

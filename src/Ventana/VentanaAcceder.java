@@ -1,7 +1,7 @@
 package Ventana;
 
-import ClasesModelo.Usuario;
 import DAO.UsuarioDAO;
+import static Memoria.Cache.usuario;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -19,7 +19,6 @@ import javax.swing.JTextField;
 
 public class VentanaAcceder extends JDialog {
 
-    public static Usuario usuario;
 
     public VentanaAcceder() {
         int tamaño = 400;

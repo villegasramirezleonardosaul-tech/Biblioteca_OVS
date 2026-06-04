@@ -1,12 +1,15 @@
 package ClasesModelo;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Mensaje {
     private int idMensaje;
     private int idComunidad;
     private String descripcion;
     private Date fecha;
+    
+    private ArrayList<Respuestas> respuestas;
 
     public Mensaje() {}
 

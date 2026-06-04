@@ -1,5 +1,6 @@
 package Ventana;
 
+import static Memoria.Cache.usuario;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -7,7 +8,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import Panel.*;
-import static Ventana.VentanaAcceder.usuario;
 import java.awt.Font;
 import java.awt.Image;
 import javax.swing.JButton;
@@ -44,7 +44,6 @@ public class VentanaPrincipal extends JFrame {
 
     //Esta es para crear la ventana 
     private void configurarVentana() {
-        usuario = null;
         setTitle("LitConect");
         //Tamaño del monitor
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
@@ -225,7 +224,7 @@ public class VentanaPrincipal extends JFrame {
 
             panelContenido.removeAll();
 
-            PanelBiblioteca biblioteca = new PanelBiblioteca();
+            PanelBiblioteca biblioteca = new PanelBiblioteca(panelContenido);
             biblioteca.setBackground(Color.decode("#F4F4F6"));
             biblioteca.setBounds(0, 0, ancho, 575);
 
