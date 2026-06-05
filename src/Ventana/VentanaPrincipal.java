@@ -228,6 +228,7 @@ public class VentanaPrincipal extends JFrame {
                 if (favoritos == null) {
                     EbookDAO dao = new EbookDAO();
                     favoritos = dao.consultarFavoritos(usuario);
+                    System.out.println(favoritos);
                 }
             }
 
@@ -235,7 +236,7 @@ public class VentanaPrincipal extends JFrame {
 
             panelContenido.removeAll();
 
-            PanelBiblioteca biblioteca = new PanelBiblioteca(panelContenido);
+            PanelBiblioteca biblioteca = new PanelBiblioteca(panelContenido, true);
             biblioteca.setBackground(Color.decode("#F4F4F6"));
             biblioteca.setBounds(0, 0, ancho, 575);
 
@@ -247,6 +248,57 @@ public class VentanaPrincipal extends JFrame {
 
         manita(btnFavoritos);
         Listenermouse(btnFavoritos, "Favoritos");
+
+        btnFavoritos.addActionListener(e -> {
+            if (usuario != null) {
+
+                if (favoritos == null) {
+                    EbookDAO dao = new EbookDAO();
+                    favoritos = dao.consultarFavoritos(usuario);
+                    System.out.println(favoritos);
+                }
+                if (!favoritos.isEmpty()) {
+
+                    seleccionarBoton(btnFavoritos, "Favoritos");
+
+                    panelContenido.removeAll();
+
+                    PanelBiblioteca biblioteca = new PanelBiblioteca(panelContenido, false);
+                    biblioteca.setBackground(Color.decode("#F4F4F6"));
+                    biblioteca.setBounds(0, 0, ancho, 575);
+
+                    panelContenido.add(biblioteca);
+
+                    panelContenido.revalidate();
+                    panelContenido.repaint();
+                } else {
+                    System.out.println(favoritos);
+                    panelContenido.removeAll();
+
+                    JLabel txt = new JLabel("La lista de favoritos esta vacia");
+
+                    txt.setBounds(600, 150, 300, 200);
+                    panelContenido.add(txt);
+
+                    panelContenido.revalidate();
+                    panelContenido.repaint();
+                }
+
+            } else {
+                System.out.println(favoritos);
+                panelContenido.removeAll();
+
+                JLabel txt = new JLabel("Hay que iniciar secion "
+                        + "para acceder");
+
+                txt.setBounds(600, 150, 300, 200);
+                panelContenido.add(txt);
+
+                panelContenido.revalidate();
+                panelContenido.repaint();
+
+            }
+        });
 
         manita(btnForo);
         Listenermouse(btnForo, "Foros");

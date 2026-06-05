@@ -25,6 +25,8 @@ public class EbookDAO {
                 libro.setTitulo(rs.getString("titulo"));
                 libro.setEditorial(rs.getString("editorial"));
                 libro.setnPaginas(rs.getInt("nPaginas"));
+                libro.setUrlImagen(rs.getString("urlImagen"));
+                libro.setUrlLibro(rs.getString("urlLibro"));
 
             }
         } catch (SQLException e) {
@@ -59,7 +61,7 @@ public class EbookDAO {
                 lista.add(libro);
             }
         } catch (SQLException e) {
-            System.out.println("Error al listar libros: " + e.getMessage());
+            System.out.println("Error al listar todos: " + e.getMessage());
             return null;
         }
         return lista;
@@ -71,32 +73,41 @@ public class EbookDAO {
      * @return
      */
     public ArrayList<ListaFavoritos> consultarFavoritos(Usuario usuario) {
+
         String boleta = usuario.getBoleta();
-        String sql = "Select * from ListaFavoritos where boleta = ?";
-        ArrayList<ListaFavoritos> lista;
 
-        try (Connection con = Conexion.conectar(); //establece la conexion
-                 PreparedStatement ps = con.prepareStatement(sql); //prepara la consulta;
-                 ResultSet resultado = ps.executeQuery()) //Regresatodo
-        {
+        String sql = "SELECT * FROM ListaFavoritos WHERE boleta = ?";
+
+        ArrayList<ListaFavoritos> lista = new ArrayList<>();
+
+        try (Connection con = Conexion.conectar(); PreparedStatement ps = con.prepareStatement(sql)) {
+
             ps.setString(1, boleta);
-            lista = new ArrayList<>();
-            //Para buscar mientras haya resultados;
-            int filasAfectadas = ps.executeUpdate();
-            if (filasAfectadas > 0) {
 
-                while (resultado.next()) {
-                    Ebook libro = consultar(resultado.getInt("idLibro"));
+            ResultSet resultado = ps.executeQuery();
 
-                    lista.add(new ListaFavoritos(libro, usuario.getBoleta()));
-                }
+            while (resultado.next()) {
+
+                Ebook libro = consultar(resultado.getInt("idLibro"));
+
+                lista.add(
+                        new ListaFavoritos(
+                                libro,
+                                usuario.getBoleta()
+                        )
+                );
             }
-            
+
         } catch (SQLException e) {
-            System.out.println("Error al listar libros: " + e.getMessage());
+
+            System.out.println(
+                    "Error al listar favoritos: "
+                    + e.getMessage()
+            );
+
             return null;
         }
+
         return lista;
     }
-
 }

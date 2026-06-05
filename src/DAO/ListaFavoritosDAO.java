@@ -26,4 +26,32 @@ public class ListaFavoritosDAO {
             return false;
         }
     }
+    
+    public boolean eliminarFavorito(ListaFavoritos favorito) {
+
+    String sql = """
+                 DELETE FROM ListaFavoritos
+                 WHERE idLibro = ? AND boleta = ?
+                 """;
+
+    try (Connection con = Conexion.conectar();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+
+        ps.setInt(1, favorito.getIdLibro().getIdLibro());
+        ps.setString(2, favorito.getBoleta());
+
+        int filasAfectadas = ps.executeUpdate();
+
+        return filasAfectadas > 0;
+
+    } catch (SQLException e) {
+
+        System.out.println(
+                "Error al eliminar favorito en el DAO: "
+                + e.getMessage()
+        );
+
+        return false;
+    }
+}
 }

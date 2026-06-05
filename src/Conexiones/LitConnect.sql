@@ -14,7 +14,8 @@ INSERT INTO TipoTag (descrip) VALUES ('novela');
 INSERT INTO TipoTag (descrip) VALUES ('fisica');           
 INSERT INTO TipoTag (descrip) VALUES ('matematicas');      
 INSERT INTO TipoTag (descrip) VALUES ('base de datos');    
-INSERT INTO TipoTag (descrip) VALUES ('ingenieria');       
+INSERT INTO TipoTag (descrip) VALUES ('ingenieria');    
+select * from tipotag;   
 
 CREATE TABLE Ebook(
     idLibro INT PRIMARY KEY AUTO_INCREMENT,
@@ -31,21 +32,22 @@ CREATE TABLE Ebook(
 #Esto si no tocar;
 
 INSERT INTO Ebook (idTag, titulo, autor, nPaginas, editorial, urlLibro, urlImagen) VALUES 
-(4, 'Algebra de Baldor', 'Aurelio Baldor', 576, 'Grupo Editorial Patria', '/Libros/Algebra_de_baldor', '/Imagenes/Algebra_de_baldor'),
-(6, 'Analisis Orientado a Objetos', 'Desconocido', 350, 'Editorial S.A.', '/Libros/Analisis_orientado', '/Imagenes/Analisis_orientado'),
-(1, 'Android Studio', 'Desconocido', 400, 'Developer Press', '/Libros/Android_studio', '/Imagenes/Android_studio'),
-(5, 'Bases de Datos', 'Desconocido', 600, 'McGraw-Hill', '/Libros/Bases_de_datos', '/Imagenes/Bases_de_datos'),
-(5, 'Bases de Datos No Relacionales', 'Desconocido', 250, 'Open Source', '/Libros/Bases_de_datos_no_relacionales', '/Imagenes/Bases_de_datos_no_relacionales'),
-(6, 'Constante Navarro', 'Navarro', 300, 'Editorial Tecnica', '/Libros/Constante_navarro', '/Imagenes/Constante_navarro'),
-(6, 'DDOO', 'Desconocido', 280, 'Educacion Superior', '/Libros/DDOO', '/Imagenes/DDOO'),
-(2, 'El Principito', 'Antoine de Saint-Exupéry', 96, 'Reynal & Hitchcock', '/Libros/El_principito', '/Imagenes/El_principito'),
-(3, 'Fundamentos de Fisica', 'Halliday & Resnick', 1100, 'Wiley', '/Libros/Fundamentos_de_fisica', '/Imagenes/Fundamentos_de_fisica'),
-(4, 'Geometria de Baldor', 'Aurelio Baldor', 460, 'Grupo Editorial Patria', '/Libros/Geometria_de_baldor', '/Imagenes/Geometria_de_baldor'),
-(1, 'Informatica', 'Desconocido', 320, 'Santiillana', '/Libros/Informatica', '/Imagenes/Informatica'),
-(5, 'Introduccion a las Bases de Datos', 'C.J. Date', 900, 'Pearson', '/Libros/Introduccion_a_las_bases_de_datos', '/Imagenes/Introduccion_a_las_bases_de_datos'),
-(1, 'Metodologia de la Programacion', 'Osvaldo Cairó', 480, 'McGraw-Hill', '/Libros/Metodologia_de_la_programacion', '/Imagenes/Metodologia_de_la_programacion'),
-(6, 'Ingenieria de Software - Pressman', 'Roger S. Pressman', 900, 'McGraw-Hill', '/Libros/Pressman', '/Imagenes/Pressman'),
-(6, 'Sistema de Control', 'Katsuhiko Ogata', 900, 'Pearson', '/Libros/Sistema_control', '/Imagenes/Sistema_control');
+(4, 'Algebra de Baldor', 'Aurelio Baldor', 576, 'Grupo Editorial Patria', 'Libros/Algebra_de_baldor.pdf', '/Imagenes/Algebra_de_baldor'),
+(6, 'Analisis Orientado a Objetos', 'Desconocido', 350, 'Editorial S.A.', 'Libros/Analisis_orientado.pdf', '/Imagenes/Analisis_orientado'),
+(1, 'Android Studio', 'Desconocido', 400, 'Developer Press', 'Libros/Android_studio.pdf', '/Imagenes/Android_studio'),
+(5, 'Bases de Datos', 'Desconocido', 600, 'McGraw-Hill', 'Libros/Bases_de_datos.pdf', '/Imagenes/Bases_de_datos'),
+(5, 'Bases de Datos No Relacionales', 'Desconocido', 250, 'Open Source', 'Libros/Bases_de_datos_no_relacionales.pdf', '/Imagenes/Bases_de_datos_no_relacionales'),
+(6, 'Constante Navarro', 'Navarro', 300, 'Editorial Tecnica', 'Libros/Constante_navarro.pdf', '/Imagenes/Constante_navarro'),
+(6, 'DDOO', 'Desconocido', 280, 'Educacion Superior', 'Libros/DDOO.pdf', '/Imagenes/DDOO'),
+(2, 'El Principito', 'Antoine de Saint-Exupéry', 96, 'Reynal & Hitchcock', 'Libros/El_principito.pdf', '/Imagenes/El_principito'),
+(3, 'Fundamentos de Fisica', 'Halliday & Resnick', 1100, 'Wiley', 'Libros/Fundamentos_de_fisica.pdf', '/Imagenes/Fundamentos_de_fisica'),
+(4, 'Geometria de Baldor', 'Aurelio Baldor', 460, 'Grupo Editorial Patria', 'Libros/Geometria_de_baldor.pdf', '/Imagenes/Geometria_de_baldor'),
+(1, 'Informatica', 'Desconocido', 320, 'Santiillana', 'Libros/Informatica.pdf', '/Imagenes/Informatica'),
+(5, 'Introduccion a las Bases de Datos', 'C.J. Date', 900, 'Pearson', 'Libros/Introduccion_a_las_bases_de_datos.pdf', '/Imagenes/Introduccion_a_las_bases_de_datos'),
+(1, 'Metodologia de la Programacion', 'Osvaldo Cairó', 480, 'McGraw-Hill', 'Libros/Metodologia_de_la_programacion.pdf', '/Imagenes/Metodologia_de_la_programacion'),
+(6, 'Ingenieria de Software - Pressman', 'Roger S. Pressman', 900, 'McGraw-Hill', 'Libros/Pressman.pdf', '/Imagenes/Pressman'),
+(6, 'Sistema de Control', 'Katsuhiko Ogata', 900, 'Pearson', 'Libros/Sistema_control.pdf', '/Imagenes/Sistema_control');
+
 CREATE TABLE TipoUsuario(
     idTipo INT PRIMARY KEY,
     usuario VARCHAR(30)
@@ -79,6 +81,7 @@ CREATE TABLE ListaFavoritos(
     FOREIGN KEY (idLibro) REFERENCES Ebook (idLibro),
     FOREIGN KEY (boleta) REFERENCES Usuario (boleta)
 );
+
 
 CREATE TABLE Comunidad(
     idComunidad INT PRIMARY KEY AUTO_INCREMENT,
