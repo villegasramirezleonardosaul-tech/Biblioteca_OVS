@@ -1,5 +1,8 @@
 package ClasesModelo;
 
+import static Memoria.Cache.ConsultarTag;
+import static Memoria.Cache.tag;
+
 public class Ebook {
     private int idLibro;
     private int idTag;
@@ -9,6 +12,7 @@ public class Ebook {
     private String editorial;
     private String urlLibro;
     private String urlImagen;
+    private String tipo;
 
     public Ebook() {}
     
@@ -37,6 +41,7 @@ public class Ebook {
 
     public void setIdTag(int idTag) {
         this.idTag = idTag;
+        
     }
 
     public String getTitulo() {
@@ -85,5 +90,17 @@ public class Ebook {
 
     public void setUrlImagen(String urlImagen) {
         this.urlImagen = urlImagen;
+    }
+    public void setTipo(){
+        if (tag==null) {
+            ConsultarTag();
+        }
+        tipo = tag.get(idTag-1);
+    }
+    public String getTipo(){
+        if (tipo == null) {
+            setTipo();
+        }
+        return tipo;
     }
 }

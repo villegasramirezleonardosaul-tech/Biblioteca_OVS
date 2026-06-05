@@ -20,6 +20,7 @@ public class PanelCatalogo extends JPanel {
     public PanelCatalogo(JPanel panel) {
         this.panel = panel;
         setLayout(null);
+        setBackground(Color.decode("#F4F4F6"));
 
         if (libros == null) {
             Cache.BuscarLibros();

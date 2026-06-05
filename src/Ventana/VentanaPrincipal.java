@@ -1,5 +1,6 @@
 package Ventana;
 
+import static Memoria.Cache.favoritos;
 import static Memoria.Cache.usuario;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -15,6 +16,8 @@ import javax.swing.JLabel;
 import java.awt.Cursor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import DAO.EbookDAO;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -144,18 +147,18 @@ public class VentanaPrincipal extends JFrame {
     }
 //Esta funcion es pa que aparesca rojito el boton
 
-    private void seleccionarBoton(JButton boton, String txt) {
-        
+    public void seleccionarBoton(JButton boton, String txt) {
+
         Imagen(btnBiblioteca, "Biblioteca");
         Imagen(btnCuenta, "Cuenta");
         Imagen(btnFavoritos, "Favoritos");
         Imagen(btnForo, "Foros");
         Imagen(btnInicio, "Inicio");
         Imagen(btnLogo, "OVS");
-        
+
         seleccionado = boton;
-        
-        txt +="_S";
+
+        txt += "_S";
 
         Imagen(boton, txt);
 
@@ -220,6 +223,14 @@ public class VentanaPrincipal extends JFrame {
         manita(btnBiblioteca);
         Listenermouse(btnBiblioteca, "Biblioteca");
         btnBiblioteca.addActionListener(e -> {
+            if (usuario != null) {
+
+                if (favoritos == null) {
+                    EbookDAO dao = new EbookDAO();
+                    favoritos = dao.consultarFavoritos(usuario);
+                }
+            }
+
             seleccionarBoton(btnBiblioteca, "Biblioteca");
 
             panelContenido.removeAll();
@@ -233,7 +244,6 @@ public class VentanaPrincipal extends JFrame {
             panelContenido.revalidate();
             panelContenido.repaint();
         });
-
 
         manita(btnFavoritos);
         Listenermouse(btnFavoritos, "Favoritos");
@@ -254,6 +264,17 @@ public class VentanaPrincipal extends JFrame {
             if (usuario != null) {
                 btnSecion.setVisible(false);
                 btnCuenta.setVisible(true);
+                seleccionarBoton(btnInicio, "Inicio");
+                panelContenido.removeAll();
+
+                PanelInicio ovs = new PanelInicio();
+                ovs.setBackground(Color.decode("#F4F4F6"));
+                ovs.setBounds(0, 0, ancho, 575);
+
+                panelContenido.add(ovs);
+
+                panelContenido.revalidate();
+                panelContenido.repaint();
             }
         });
 

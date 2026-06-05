@@ -10,14 +10,13 @@ import java.sql.SQLException;
 public class ListaFavoritosDAO {
 
     public boolean insertarFavorito(ListaFavoritos favorito) {
-        String sql = "INSERT INTO ListaFavoritos (idLibro, boleta, nomLista) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO ListaFavoritos (idLibro, boleta) VALUES (?, ?)";
         
         try (Connection con = Conexion.conectar();
              PreparedStatement ps = con.prepareStatement(sql)) {
             
-            ps.setInt(1, favorito.getIdLibro());
-            ps.setInt(2, favorito.getBoleta());
-            ps.setString(3, favorito.getNomLista());
+            ps.setInt(1, favorito.getIdLibro().getIdLibro());
+            ps.setString(2, favorito.getBoleta());
             
             int filasAfectadas = ps.executeUpdate();
             return filasAfectadas > 0;

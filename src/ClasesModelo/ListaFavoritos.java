@@ -2,16 +2,15 @@ package ClasesModelo;
 
 public class ListaFavoritos {
     private int idLista;
-    private int idLibro;
-    private int boleta;
-    private String nomLista;
+    private Ebook Libro;
+    private String boleta;
 
     public ListaFavoritos() {}
 
-    public ListaFavoritos(int idLibro, int boleta, String nomLista) {
-        this.idLibro = idLibro;
+    public ListaFavoritos(Ebook idLibro, String boleta) {
+        this.Libro = idLibro;
         this.boleta = boleta;
-        this.nomLista = nomLista;
+        
     }
 
     public int getIdLista() { 
@@ -21,24 +20,18 @@ public class ListaFavoritos {
         this.idLista = idLista;
     }
 
-    public int getIdLibro() { 
-        return idLibro; 
+    public Ebook getIdLibro() { 
+        return Libro; 
     }
-    public void setIdLibro(int idLibro) {
-        this.idLibro = idLibro;
+    public void setIdLibro(Ebook idLibro) {
+        this.Libro = idLibro;
     }
 
-    public int getBoleta() { 
+    public String getBoleta() { 
         return boleta; 
     }
-    public void setBoleta(int boleta) { 
+    public void setBoleta(String boleta) { 
         this.boleta = boleta;
     }
 
-    public String getNomLista() { 
-        return nomLista; 
-    }
-    public void setNomLista(String nomLista) { 
-        this.nomLista = nomLista;
-    }
 }
