@@ -110,6 +110,8 @@ CREATE TABLE Respuesta(
     fecha DATE DEFAULT (CURRENT_DATE), 
     FOREIGN KEY (idMensaje) REFERENCES Mensaje(idMensaje)
 );
+
+
 #Esto para imprimir las tablas que quieran
 SELECT * FROM TipoTag;
 SELECT * FROM Ebook;

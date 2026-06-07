@@ -92,9 +92,6 @@ public class Ebook {
         this.urlImagen = urlImagen;
     }
     public void setTipo(){
-        if (tag==null) {
-            ConsultarTag();
-        }
         tipo = tag.get(idTag-1);
     }
     public String getTipo(){

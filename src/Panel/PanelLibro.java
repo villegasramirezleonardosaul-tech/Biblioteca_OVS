@@ -32,7 +32,7 @@ public class PanelLibro extends JPanel {
     private JButton favorito;
     private JButton borrar;
 
-    public PanelLibro(JPanel panel, Ebook libro,boolean flag) {
+    public PanelLibro(JPanel panel, Ebook libro, ArrayList<Ebook> lista) {
         setLayout(null);
         setBounds(0, 0, 1366, 768);
 
@@ -57,7 +57,7 @@ public class PanelLibro extends JPanel {
 
             panel.removeAll();
 
-            PanelBiblioteca biblioteca = new PanelBiblioteca(panel,flag);
+            PanelBiblioteca biblioteca = new PanelBiblioteca(panel,lista);
             biblioteca.setBackground(Color.decode("#F4F4F6"));
             biblioteca.setBounds(0, 0, 1366, 575);
 
@@ -96,9 +96,9 @@ public class PanelLibro extends JPanel {
         Listenermouse(favorito, "Añadir");
 
         favorito.addActionListener(e -> {
-            ListaFavoritos lista = new ListaFavoritos(libro, usuario.getBoleta());
+            ListaFavoritos fav = new ListaFavoritos(libro, usuario.getBoleta());
             ListaFavoritosDAO insert = new ListaFavoritosDAO();
-            insert.insertarFavorito(lista);
+            insert.insertarFavorito(fav);
             Cache.AñadirFavoritos(libro);
             borrar.setVisible(true);
             favorito.setVisible(false);
@@ -110,9 +110,9 @@ public class PanelLibro extends JPanel {
         Listenermouse(borrar, "Eliminar");
 
         borrar.addActionListener(e -> {
-            ListaFavoritos lista = new ListaFavoritos(libro, usuario.getBoleta());
+            ListaFavoritos fav = new ListaFavoritos(libro, usuario.getBoleta());
             ListaFavoritosDAO insert = new ListaFavoritosDAO();
-            insert.eliminarFavorito(lista);
+            insert.eliminarFavorito(fav);
             Cache.EliminarFavoritos(libro);
             borrar.setVisible(false);
             favorito.setVisible(true);

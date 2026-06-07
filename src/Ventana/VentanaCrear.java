@@ -25,15 +25,15 @@ public class VentanaCrear extends JDialog {
         setBounds(500, 210, tamaño, tamaño);
         setLayout(null);
 
-        JLabel titulo = new JLabel("Acceder");
-        titulo.setBounds(145, 10, 100, 25);
+        JLabel titulo = new JLabel("Crear Cuenta");
+        titulo.setBounds(120, 10, 300, 25);
         titulo.setFont(new Font("Arial", Font.BOLD, 25));
-        titulo.setForeground(Color.WHITE);
+        titulo.setForeground(Color.BLACK);
 
         JLabel lblBoleta = new JLabel("Boleta:");
         lblBoleta.setBounds(40, 50, 80, 25);
         lblBoleta.setFont(new Font("Arial", Font.BOLD, 15));
-        lblBoleta.setForeground(Color.WHITE);
+        lblBoleta.setForeground(Color.BLACK);
 
         JTextField txtBoleta = new JTextField();
         txtBoleta.setBounds(40, 70, 140, 25);
@@ -41,7 +41,7 @@ public class VentanaCrear extends JDialog {
         JLabel lblNombre = new JLabel("Nombre:");
         lblNombre.setBounds(40, 120, 80, 25);
         lblNombre.setFont(new Font("Arial", Font.BOLD, 15));
-        lblNombre.setForeground(Color.WHITE);
+        lblNombre.setForeground(Color.BLACK);
 
         JTextField txtNombre = new JTextField();
         txtNombre.setBounds(40, 140, 140, 25);
@@ -49,13 +49,13 @@ public class VentanaCrear extends JDialog {
         JLabel lblContrasena = new JLabel("Contraseña:");
         lblContrasena.setBounds(40, 190, 120, 25);
         lblContrasena.setFont(new Font("Arial", Font.BOLD, 15));
-        lblContrasena.setForeground(Color.WHITE);
+        lblContrasena.setForeground(Color.BLACK);
 
         JPasswordField txtContrasena = new JPasswordField();
         txtContrasena.setBounds(40, 210, 140, 25);
 
         JButton btnAcceder = new JButton("Ya tienes cuenta");
-        btnAcceder.setBounds(130, 270, 150, 30);
+        btnAcceder.setBounds(130, 250, 150, 30);
         Imagen(btnAcceder, "Tener");
         manita(btnAcceder);
         Listenermouse(btnAcceder, "tener");
@@ -67,7 +67,7 @@ public class VentanaCrear extends JDialog {
         });
 
         JButton btnCrear = new JButton();
-        btnCrear.setBounds(170, 310, 60, 30);
+        btnCrear.setBounds(170, 300, 60, 30);
         Imagen(btnCrear, "btnCrear");
         manita(btnCrear);
         Listenermouse(btnCrear, "btnCrear");
@@ -128,7 +128,7 @@ public class VentanaCrear extends JDialog {
         });
 
         JButton btnSalir = new JButton("Cerrar");
-        btnSalir.setBounds(170, 350, 60, 30);
+        btnSalir.setBounds(175, 340, 60, 30);
         Imagen(btnSalir, "Cerrar");
         manita(btnSalir);
         Listenermouse(btnSalir, "Cerrar");
@@ -145,17 +145,9 @@ public class VentanaCrear extends JDialog {
                 )
         );
 
-        ImageIcon iconoOriginal = new ImageIcon(
-                getClass().getResource("/Imagenes/Crear.jpg")
-        );
-
-        Image imagenEscalada = iconoOriginal.getImage()
-                .getScaledInstance(tamaño, tamaño, Image.SCALE_SMOOTH);
-
-        ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
+        
         JLabel fondo = new JLabel();
-
-        fondo.setIcon(iconoEscalado);
+        setBackground(Color.WHITE);
 
         fondo.setLayout(null);
 

@@ -58,9 +58,23 @@ public class Cache {
             if (favoritos.get(i).getIdLibro().getIdLibro() == libro.getIdLibro()) {
 
                 favoritos.remove(i);
+                break;
             }
         }
 
+    }
+
+    public static ArrayList<Ebook> CrearLista(ArrayList<ListaFavoritos> fav) {
+        int tamaño = fav.size();
+        ArrayList<Ebook> lista = new ArrayList();
+        for (int i = 0; i < tamaño; i++) {
+
+            lista.add(fav.get(i).getIdLibro());
+        }
+        return lista;
+    }
+    public static void AñadirLibro(Ebook libro){
+        libros.add(libro);
     }
 
 }

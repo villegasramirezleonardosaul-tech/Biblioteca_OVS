@@ -18,6 +18,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import DAO.EbookDAO;
+import Memoria.Cache;
+import static Memoria.Cache.ConsultarTag;
+import static Memoria.Cache.libros;
+import static Memoria.Cache.tag;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -53,8 +57,8 @@ public class VentanaPrincipal extends JFrame {
         ancho = pantalla.width;
         largo = pantalla.height;
         if (false) {
-            ancho = ancho - 500;
-            largo = largo - 300;
+            ancho = 1366;
+            largo = 768;
         }
         System.out.println(ancho);
         System.out.println(largo);
@@ -232,11 +236,18 @@ public class VentanaPrincipal extends JFrame {
                 }
             }
 
+            if (libros == null) {
+                Cache.BuscarLibros();
+            }
+            if (tag == null) {
+                ConsultarTag();
+            }
+
             seleccionarBoton(btnBiblioteca, "Biblioteca");
 
             panelContenido.removeAll();
 
-            PanelBiblioteca biblioteca = new PanelBiblioteca(panelContenido, true);
+            PanelBiblioteca biblioteca = new PanelBiblioteca(panelContenido, libros);
             biblioteca.setBackground(Color.decode("#F4F4F6"));
             biblioteca.setBounds(0, 0, ancho, 575);
 
@@ -259,11 +270,15 @@ public class VentanaPrincipal extends JFrame {
                 }
                 if (!favoritos.isEmpty()) {
 
+                    if (tag == null) {
+                        ConsultarTag();
+                    }
+
                     seleccionarBoton(btnFavoritos, "Favoritos");
 
                     panelContenido.removeAll();
 
-                    PanelBiblioteca biblioteca = new PanelBiblioteca(panelContenido, false);
+                    PanelBiblioteca biblioteca = new PanelBiblioteca(panelContenido, Cache.CrearLista(favoritos));
                     biblioteca.setBackground(Color.decode("#F4F4F6"));
                     biblioteca.setBounds(0, 0, ancho, 575);
 

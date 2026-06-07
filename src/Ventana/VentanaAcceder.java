@@ -46,7 +46,7 @@ public class VentanaAcceder extends JDialog {
         txtContrasena.setBounds(40, 140, 140, 25);
         
         JButton btnAcceder = new JButton("Crear cuenta");
-        btnAcceder.setBounds(135,270,145,30);
+        btnAcceder.setBounds(130,250,145,30);
         Imagen(btnAcceder, "Crear");
         manita(btnAcceder);
         Listenermouse(btnAcceder, "Crear");
@@ -59,7 +59,7 @@ public class VentanaAcceder extends JDialog {
         
 
         JButton btnIntentar = new JButton("Acceder");
-        btnIntentar.setBounds(170, 310, 60, 30);
+        btnIntentar.setBounds(170, 300, 60, 30);
         Imagen(btnIntentar, "Acceder");
         manita(btnIntentar);
         Listenermouse(btnIntentar, "Acceder");
@@ -119,7 +119,7 @@ public class VentanaAcceder extends JDialog {
         });
 
         JButton btnSalir = new JButton("Cerrar");
-        btnSalir.setBounds(170, 350, 60, 30);
+        btnSalir.setBounds(170, 340, 60, 30);
         Imagen(btnSalir, "Cerrar");
         manita(btnSalir);
         Listenermouse(btnSalir, "Cerrar");
@@ -135,19 +135,12 @@ public class VentanaAcceder extends JDialog {
                 )
         );
 
-        ImageIcon iconoOriginal = new ImageIcon(
-                getClass().getResource("/Imagenes/Acceder.jpg")
-        );
-
-        Image imagenEscalada = iconoOriginal.getImage()
-                .getScaledInstance(tamaño, tamaño, Image.SCALE_SMOOTH);
-
-        ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
+        
         JLabel fondo = new JLabel();
 
-        fondo.setIcon(iconoEscalado);
 
         fondo.setLayout(null);
+        setBackground(Color.WHITE);
 
         setContentPane(fondo);
 

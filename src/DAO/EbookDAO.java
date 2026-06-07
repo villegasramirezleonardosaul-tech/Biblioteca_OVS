@@ -110,4 +110,34 @@ public class EbookDAO {
 
         return lista;
     }
+    
+    public boolean insertar(Ebook libro) {
+
+    String sql = """
+                 INSERT INTO Ebook
+                 (idTag, autor, titulo, editorial,
+                  nPaginas, urlImagen, urlLibro)
+                 VALUES (?, ?, ?, ?, ?, ?, ?)
+                 """;
+
+    try (Connection con = Conexion.conectar();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+
+        ps.setInt(1, libro.getIdTag());
+        ps.setString(2, libro.getAutor());
+        ps.setString(3, libro.getTitulo());
+        ps.setString(4, libro.getEditorial());
+        ps.setInt(5, libro.getnPaginas());
+        ps.setString(6, libro.getUrlImagen());
+        ps.setString(7, libro.getUrlLibro());
+
+        return ps.executeUpdate() > 0;
+
+    } catch (SQLException e) {
+
+        System.out.println("Error al insertar libro");
+        e.printStackTrace();
+        return false;
+    }
+}
 }

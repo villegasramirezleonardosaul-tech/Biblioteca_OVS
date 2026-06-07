@@ -4,6 +4,7 @@ import ClasesModelo.Ebook;
 import Memoria.Cache;
 import static Memoria.Cache.favoritos;
 import static Memoria.Cache.libros;
+import Ventana.DialogoSubirLibro;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -19,36 +20,12 @@ public class PanelCatalogo extends JPanel {
     private JPanel panel;
     private boolean flag;
 
-    public PanelCatalogo(JPanel panel, boolean flag) {
-        System.out.println("prueba");
-        this.flag = flag;
+    public PanelCatalogo(JPanel panel, ArrayList<Ebook> lista) {
         this.panel = panel;
         setLayout(null);
         setBackground(Color.decode("#F4F4F6"));
-        if (flag) {
-
-            if (libros == null) {
-                Cache.BuscarLibros();
-            }
-            crearBotones(libros);
-            crearTitulos(libros);
-        } else {
-            System.out.println(favoritos);
-            int tamaño = favoritos.size();
-            ArrayList<Ebook> lista = new ArrayList();
-            for (int i = 0; i < tamaño; i++) {
-                System.out.println(favoritos.get(i));
-
-                System.out.println(
-                        favoritos.get(i).getIdLibro()
-                );
-                lista.add(favoritos.get(i).getIdLibro());
-            }
-            System.out.println(lista);
-            crearBotones(lista);
-            crearTitulos(lista);
-            System.out.println("porque no llega aqui ");
-        }
+        crearBotones(lista);
+        crearTitulos(lista);
 
     }
 
@@ -56,7 +33,7 @@ public class PanelCatalogo extends JPanel {
         int tamaño = lista.size();
         for (int i = 0; i < tamaño; i++) {
             Ebook libro = lista.get(i);
-            JButton boton = new JButton("emos aqui" + i);
+            JButton boton = new JButton();
             if (i < 8) {
 
                 boton.setBounds(100 + (150 * i), 0, 100, 150);
@@ -70,7 +47,7 @@ public class PanelCatalogo extends JPanel {
             boton.addActionListener(e -> {
                 panel.removeAll();
 
-                PanelLibro biblioteca = new PanelLibro(panel, libro, flag);
+                PanelLibro biblioteca = new PanelLibro(panel, libro, lista);
                 biblioteca.setBackground(Color.decode("#F4F4F6"));
                 biblioteca.setBounds(0, 0, 1366, 575);
 
@@ -81,6 +58,24 @@ public class PanelCatalogo extends JPanel {
             });
             add(boton);
         }
+        
+        if (lista.size()==15) {
+            
+            JButton subir = new JButton("Subir");
+            subir.setBounds(1150, 300, 100, 50);
+
+            subir.addActionListener(e -> {
+
+                DialogoSubirLibro dialogo
+                        = new DialogoSubirLibro(panel);
+
+                dialogo.setVisible(true);
+
+            });
+
+            add(subir);
+        }
+
     }
 
     public void crearTitulos(ArrayList<Ebook> lista) {
@@ -116,6 +111,8 @@ public class PanelCatalogo extends JPanel {
     }
 
     public void Imagen(JButton boton, String txt) {
+        System.out.println(txt);
+        System.out.println(getClass().getResource(txt + ".png"));
         ImageIcon iconoOriginal = new ImageIcon(
                 getClass().getResource(txt + ".png")
         );
